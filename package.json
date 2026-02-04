@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "NEXT_PRIVATE_MAX_WORKERS=2 next build",
-    "start": "next start -p ${PORT:-3000}",
+    "start": "next start -p $PORT",
     "lint": "eslint"
   },
   "dependencies": {
