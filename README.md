@@ -1,36 +1,191 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🏥 Healthcare Doctor–Patient Translation Web Application
 
-## Getting Started
+Pre-Interview Take-Home Assignment for Nao Medical
 
-First, run the development server:
+A full-stack, AI-powered web application that enables real-time multilingual communication between doctors and patients through text, audio, translation, searchable logs, and AI-generated medical summaries.
 
-```bash
+🚀 Project Overview
+
+This application acts as a real-time translation bridge between a doctor and a patient who speak different languages.
+
+The system allows both roles to:
+
+Send text messages
+
+Record audio directly from the browser
+
+See instant translations into the other party’s selected language
+
+Persist conversation history across sessions
+
+Search past conversations
+
+Generate AI-powered summaries highlighting medical insights
+
+The focus of this project is system design, AI integration, and feature prioritization under time constraints, not just UI.
+
+✅ Core Functionalities Implemented
+1. Real-Time Doctor–Patient Translation
+
+Two roles: Doctor and Patient
+
+Each role selects their preferred language
+
+Messages are translated into the other party’s language using Gemini API
+
+Works for both text and audio messages
+
+2. Text Chat Interface
+
+Clear chat layout with visual separation between roles
+
+Conversation style UI with message bubbles
+
+Mobile-friendly responsive layout using Tailwind CSS
+
+3. Audio Recording & Storage
+
+Record audio directly from the browser using MediaRecorder API
+
+Audio uploaded and stored on server
+
+Audio appears inside the chat thread
+
+Audio playable even after page refresh
+
+4. Conversation Logging & Persistence
+
+SQLite database via Prisma ORM
+
+Messages stored with timestamps
+
+Conversation history persists beyond session
+
+5. Conversation Search
+
+Search across original and translated messages
+
+Quickly retrieve relevant past interactions
+
+6. AI-Powered Medical Summary
+
+Gemini used to summarize entire conversation
+
+Extracts:
+
+Symptoms
+
+Possible diagnosis
+
+Follow-up actions
+
+🧠 AI & LLM Integration
+Feature	AI Usage
+Translation	Gemini LLM with medical-focused prompt
+Conversation Summary	Gemini LLM analyzing entire chat history
+
+Prompts were carefully designed to:
+
+Return only clean translations
+
+Extract structured medical insights in summaries
+
+🛠 Tech Stack
+Layer	Technology
+Frontend	Next.js 16 (App Router) + Tailwind CSS
+Backend	Next.js API Routes
+Database	SQLite + Prisma ORM
+AI	Google Gemini API
+Audio	Browser MediaRecorder + server file storage
+Deployment	Vercel-ready
+🗂 Project Structure
+/app
+  /api
+    /conversation
+    /message
+    /messages/[id]
+    /upload
+    /search
+    /summary
+/lib
+  ai.js
+  prisma.js
+/prisma
+  schema.prisma
+
+
+This structure demonstrates clear separation of:
+
+API logic
+
+AI utilities
+
+Database layer
+
+UI layer
+
+▶️ How to Run Locally
+1. Install dependencies
+npm install
+
+2. Add environment variables
+
+Create .env:
+
+GEMINI_API_KEY=your_key_here
+DATABASE_URL="file:./dev.db"
+
+3. Setup database
+npx prisma migrate dev
+
+4. Run
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open: http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🔒 Privacy & Security Considerations
 
-## Learn More
+No PHI is permanently stored
 
-To learn more about Next.js, take a look at the following resources:
+Audio stored locally for demo purposes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+API keys stored in environment variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+HTTPS recommended in deployment (Vercel)
 
-## Deploy on Vercel
+🎯 What This Project Demonstrates
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Full-stack architecture under time constraint
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Effective use of AI tools for real product features
+
+Handling of audio data in web applications
+
+Database modeling for conversational systems
+
+Prioritization of features based on requirements
+
+Clean and modular code organization
+
+⚠️ Known Limitations / Trade-offs
+
+SQLite used for simplicity; Postgres recommended for production
+
+Basic search without highlighting (time trade-off)
+
+No authentication (out of scope)
+
+Audio files stored locally (cloud storage recommended for scale)
+
+🌐 Deployment
+
+This app is fully deployable to Vercel without modification.
+
+👨‍💻 Developer
+
+Ahammed Najad
+
+🙌 Notes
+
+This project was intentionally built focusing on system design, AI integration, and functional completeness within the 12-hour constraint, aligning with the assignment’s expectations.
