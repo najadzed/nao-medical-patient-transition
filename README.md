@@ -1,191 +1,125 @@
-🏥 Healthcare Doctor–Patient Translation Web Application
+🏥 Doctor–Patient Translation Web Application
 
-Pre-Interview Take-Home Assignment for Nao Medical
+A full-stack healthcare communication app that helps doctors and patients who speak different languages communicate seamlessly using AI-powered translation and conversation summarization.
 
-A full-stack, AI-powered web application that enables real-time multilingual communication between doctors and patients through text, audio, translation, searchable logs, and AI-generated medical summaries.
+Built as part of a technical take-home assignment to demonstrate full-stack architecture, AI integration, audio handling, database design, and production deployment.
 
-🚀 Project Overview
+🚀 Live Demo
 
-This application acts as a real-time translation bridge between a doctor and a patient who speak different languages.
+Live App: https://nao-medical-patient-transition.vercel.app
 
-The system allows both roles to:
 
-Send text messages
+🎯 Project Overview
 
-Record audio directly from the browser
+This application acts as a real-time translation bridge between a doctor and a patient.
 
-See instant translations into the other party’s selected language
+Users type messages in their own language
 
-Persist conversation history across sessions
+The app translates messages into the other user’s language using AI
 
-Search past conversations
+Conversations are stored and can be searched later
 
-Generate AI-powered summaries highlighting medical insights
+Audio messages can be recorded and saved in the conversation
 
-The focus of this project is system design, AI integration, and feature prioritization under time constraints, not just UI.
+An AI summary generates a medical-style overview of the entire conversation
 
-✅ Core Functionalities Implemented
-1. Real-Time Doctor–Patient Translation
+The focus of this project was not just features, but correct architecture for a serverless production environment.
 
-Two roles: Doctor and Patient
+✨ Core Features
+✅ Real-Time Translation
 
-Each role selects their preferred language
+Messages typed by the doctor or patient are automatically translated into the selected language of the other participant using Google Gemini AI.
 
-Messages are translated into the other party’s language using Gemini API
+✅ Text Chat Interface
 
-Works for both text and audio messages
+Clear UI that distinguishes between doctor and patient messages with timestamps.
 
-2. Text Chat Interface
+✅ Audio Recording & Storage
 
-Clear chat layout with visual separation between roles
+Users can record audio directly from the browser. Audio clips are saved and playable inside the conversation thread.
 
-Conversation style UI with message bubbles
+✅ Conversation Logging
 
-Mobile-friendly responsive layout using Tailwind CSS
+All messages and audio are stored in a PostgreSQL database and persist across sessions.
 
-3. Audio Recording & Storage
+✅ Conversation Search
 
-Record audio directly from the browser using MediaRecorder API
+Keyword search across past messages with contextual results.
 
-Audio uploaded and stored on server
+✅ AI-Powered Medical Summary
 
-Audio appears inside the chat thread
-
-Audio playable even after page refresh
-
-4. Conversation Logging & Persistence
-
-SQLite database via Prisma ORM
-
-Messages stored with timestamps
-
-Conversation history persists beyond session
-
-5. Conversation Search
-
-Search across original and translated messages
-
-Quickly retrieve relevant past interactions
-
-6. AI-Powered Medical Summary
-
-Gemini used to summarize entire conversation
-
-Extracts:
+At any point, users can generate a structured summary highlighting:
 
 Symptoms
 
 Possible diagnosis
 
+Medications
+
 Follow-up actions
-
-🧠 AI & LLM Integration
-Feature	AI Usage
-Translation	Gemini LLM with medical-focused prompt
-Conversation Summary	Gemini LLM analyzing entire chat history
-
-Prompts were carefully designed to:
-
-Return only clean translations
-
-Extract structured medical insights in summaries
 
 🛠 Tech Stack
 Layer	Technology
-Frontend	Next.js 16 (App Router) + Tailwind CSS
+Frontend	Next.js (App Router), React, Tailwind CSS
 Backend	Next.js API Routes
-Database	SQLite + Prisma ORM
+Database	Neon PostgreSQL
+ORM	Prisma
 AI	Google Gemini API
-Audio	Browser MediaRecorder + server file storage
-Deployment	Vercel-ready
-🗂 Project Structure
-/app
-  /api
-    /conversation
-    /message
-    /messages/[id]
-    /upload
-    /search
-    /summary
-/lib
-  ai.js
-  prisma.js
-/prisma
-  schema.prisma
+Deployment	Vercel
+🧠 Architecture Notes
 
+This project originally worked with SQLite locally. During deployment, SQLite caused serverless runtime failures because Vercel’s filesystem is read-only.
 
-This structure demonstrates clear separation of:
+The architecture was refactored to use Neon PostgreSQL with Prisma for proper serverless compatibility.
 
-API logic
+This demonstrates handling real production deployment issues rather than just local development.
 
-AI utilities
+📦 Local Setup
+1. Clone the repository
+git clone https://github.com/najadzed/doc-patient-ai.git
+cd doc-patient-ai
 
-Database layer
-
-UI layer
-
-▶️ How to Run Locally
-1. Install dependencies
+2. Install dependencies
 npm install
 
-2. Add environment variables
+3. Create .env
+DATABASE_URL=your_neon_postgres_url
+GEMINI_API_KEY=your_gemini_key
 
-Create .env:
-
-GEMINI_API_KEY=your_key_here
-DATABASE_URL="file:./dev.db"
-
-3. Setup database
+4. Run Prisma migration
 npx prisma migrate dev
+npx prisma generate
 
-4. Run
+5. Start the app
 npm run dev
 
+🌍 Deployment
 
-Open: http://localhost:3000
+The app is deployed on Vercel with:
 
-🔒 Privacy & Security Considerations
+Neon PostgreSQL for database
 
-No PHI is permanently stored
+Prisma configured for Node.js runtime
 
-Audio stored locally for demo purposes
+Environment variables set in Vercel dashboard
 
-API keys stored in environment variables
+📚 What This Project Demonstrates
 
-HTTPS recommended in deployment (Vercel)
+Full-stack application design
 
-🎯 What This Project Demonstrates
+AI/LLM API integration
 
-Full-stack architecture under time constraint
+Audio handling in browser
 
-Effective use of AI tools for real product features
+Database schema design with Prisma
 
-Handling of audio data in web applications
+Search and data persistence
 
-Database modeling for conversational systems
+Debugging serverless deployment issues
 
-Prioritization of features based on requirements
-
-Clean and modular code organization
-
-⚠️ Known Limitations / Trade-offs
-
-SQLite used for simplicity; Postgres recommended for production
-
-Basic search without highlighting (time trade-off)
-
-No authentication (out of scope)
-
-Audio files stored locally (cloud storage recommended for scale)
-
-🌐 Deployment
-
-This app is fully deployable to Vercel without modification.
+Migrating from SQLite to PostgreSQL for production
 
 👨‍💻 Developer
 
-Ahammed Najad
-
-🙌 Notes
-
-This project was intentionally built focusing on system design, AI integration, and functional completeness within the 12-hour constraint, aligning with the assignment’s expectations.
+Najad
+Built for Nao Medical Pre-Interview Assignment
