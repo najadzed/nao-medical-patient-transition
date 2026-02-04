@@ -2,6 +2,10 @@
   "name": "nao-translation",
   "version": "0.1.0",
   "private": true,
+
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "NEXT_PRIVATE_MAX_WORKERS=2 next build",
