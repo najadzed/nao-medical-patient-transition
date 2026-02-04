@@ -5,9 +5,6 @@
 /.next
 /out
 
-# prisma / database
-dev.db
-/prisma/dev.db
 
 # env files
 .env
